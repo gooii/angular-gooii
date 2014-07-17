@@ -1,0 +1,36 @@
+{
+  "name": "angular-gooii",
+  "version": "0.0.1",
+  "main": "dist/angular-gooii.js",
+  "ignore": [
+    ".tmp",
+    ".bowerrc",
+    ".editorconfig",
+    ".gitignore",
+    ".gitattributes",
+    ".jshintignore",
+    ".jshintrc",
+    ".travis.yml",
+    "bower.json",
+    "Gruntfile.js",
+    "package.json",
+    "angular-gooii.iml",
+    "README.md",
+    "dist",
+    "grunt",
+    "node_modules",
+    ".sass-cache"
+  ],
+  "dependencies": {
+    "angular": "~1.2",
+    "angular-route": null,
+    "jquery": "~2.1",
+    "json3": "~3.2.6",
+    "es5-shim": "~2.1.0",
+    "woodman": "~1.1.0",
+    "lodash": "~2.4.1",
+    "angular-rx": "~0.0.3"
+  },
+  "devDependencies": {
+  }
+}
