@@ -43,6 +43,10 @@ class UrlStateService
   # to implement a toRouteModel method
   #
   store: (model, immediate) =>
+
+    if not model
+      @log.error('Cant store null model')
+
     # cancel any previous timeout promise operations
     #
     @cancel()
@@ -50,7 +54,7 @@ class UrlStateService
     # if the model passed in already represents our cached instance
     # no need to do any further work
     #
-    if (@currentModel?.equals(model))
+    if (@currentModel and _.isEqual(@currentModel, model))
       # create a new deferred object
       #
       deferred = @$q.defer()
@@ -81,7 +85,7 @@ class UrlStateService
       # extend it with the new set of query parameters converted to a route
       # model instance
       #
-      angular.extend newSearch, model.toRouteModel()
+      angular.extend newSearch, model
       # further extend it, with parameters present in the current
       # $location WHICH ARE NOT PRESENT in the queryModel control
       # instance
@@ -97,7 +101,8 @@ class UrlStateService
 
       @log.log('Storing query state in cookie %O', newSearch)
       # update the cookie
-      @$cookieStore.put(UrlStateService.cookieId, newSearch)
+      if @useCookie
+        @$cookieStore.put(UrlStateService.cookieId, newSearch)
 
       # resolve our promise with the saved model
       #
@@ -109,10 +114,11 @@ class UrlStateService
   restoreFromCookie: (path) =>
 
     cookie = @$cookieStore.get UrlStateService.cookieId
-    @log.log('Got state cookie %O', cookie)
 
-    @$location.path(path)
-    @$location.search(cookie)
+    if cookie
+      @log.log('Got state cookie %O', cookie)
+      @$location.path(path)
+      @$location.search(cookie)
 
   # private (by '_' convention) to cancel any pending model persist
   # operations if one is already in progress

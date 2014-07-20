@@ -1,5 +1,5 @@
 class TimeoutService
-  @$inject: ['$window', '$timeout','configuration', 'JiscLoggerService', '$location']
+  @$inject: ['$window', '$timeout','configuration', 'LoggerService', '$location']
 
   constructor: (@$window, @$timeout, @config, logFactory, @location) ->
     @log = logFactory.getLogger('timeoutService')
