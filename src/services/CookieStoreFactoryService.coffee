@@ -14,6 +14,10 @@ class CookieStoreFactoryService
 
     return @cache[id]
 
+  remove: (cookies) =>
+    _.each cookies, (cookieName) =>
+      @$cookieStore.remove cookieName
+
 class CookieStoreService
 
   @cookieId: ''
