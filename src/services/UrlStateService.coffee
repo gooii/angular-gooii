@@ -34,9 +34,6 @@ class UrlStateService
   autoCookie: (auto) =>
     @useCookie = auto
 
-  setControlModel: (controlModel) =>
-    @controlModel = controlModel
-
   # allows controllers to store the current state of their model type
   # in the browser URL (without affecting other query parameters); it
   # would be nice if we had interfaces but we expect the model passed
@@ -46,7 +43,8 @@ class UrlStateService
 
     if not model
       @log.error('Cant store null model')
-
+    else
+      @log.log('Store model in url %O', model)
     # cancel any previous timeout promise operations
     #
     @cancel()
@@ -55,6 +53,7 @@ class UrlStateService
     # no need to do any further work
     #
     if (@currentModel and _.isEqual(@currentModel, model))
+      @log.log('Current model and new are equal. %O %O', @currentModel, model)
       # create a new deferred object
       #
       deferred = @$q.defer()
@@ -69,6 +68,7 @@ class UrlStateService
 
     # cache (a copy!) of this new model instance
     #
+    @log.log('Cache copy of model %O', model)
     @currentModel = angular.copy model
 
     # set default timeout or zero
@@ -86,15 +86,17 @@ class UrlStateService
       # model instance
       #
       angular.extend newSearch, model
+
+      @log.log('New search %O from model %O', angular.copy newSearch, model)
       # further extend it, with parameters present in the current
-      # $location WHICH ARE NOT PRESENT in the queryModel control
-      # instance
+      # $location WHICH ARE NOT PRESENT in the new instance
       #
       angular.extend newSearch, _.transform @$location.search(), (result, val, key) =>
-        result[key] = val if _.has(@controlModel, key) is false
-        # return the modified result
-        #
+        result[key] = val if _.has(model, key) is false
         return result
+
+      @log.log('New search is now %O', angular.copy newSearch)
+
       # update $location
       #
       @$location.search(newSearch)
