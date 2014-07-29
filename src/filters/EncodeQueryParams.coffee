@@ -16,12 +16,12 @@ app.filter 'encodeQueryParams', ->
     _.forOwn query, (value, key) ->
       if angular.isString(value)
         params.push """#{encodeURIComponent(key)}#{separator}#{encodeURIComponent(value)}"""
-
-      if angular.isArray(value)
+      else if angular.isArray(value)
         _.each value, (element) ->
           params.push """#{encodeURIComponent(key)}#{separator}#{encodeURIComponent(element)}"""
-
-      if angular.isNumber(value)
+      else if angular.isNumber(value)
+        params.push """#{encodeURIComponent(key)}#{separator}#{value}"""
+      else if _.isBoolean(value)
         params.push """#{encodeURIComponent(key)}#{separator}#{value}"""
 
     if params.length > 0
