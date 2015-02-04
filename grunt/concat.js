@@ -4,6 +4,6 @@ module.exports = {
   },
   dist: {
     src: ['.tmp/**/*.js'],
-    dest: 'dist/angular-gooii.js'
+    dest: '.tmp/concat/angular-gooii.js'
   }
 };
