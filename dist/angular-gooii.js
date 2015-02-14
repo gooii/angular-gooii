@@ -1,4 +1,10 @@
 (function() {
+  var lib;
+
+  lib = angular.module('gooii', []);
+
+}).call(this);
+;(function() {
   var app;
 
   app = angular.module('gooii');
