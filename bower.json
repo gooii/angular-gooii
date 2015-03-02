@@ -1,6 +1,6 @@
 {
   "name": "angular-gooii",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "dependencies": {
       "woodman": "~1.1.0"
   }
