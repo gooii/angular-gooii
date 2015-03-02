@@ -311,45 +311,39 @@ Portions adapted from log4javascript
   TimeoutService = (function() {
     TimeoutService.$inject = ['$window', '$timeout', 'configuration', 'LoggerService', '$location'];
 
-    function TimeoutService($window, $timeout, config, logFactory, location) {
-      this.$window = $window;
-      this.$timeout = $timeout;
-      this.config = config;
-      this.location = location;
-      this.response = __bind(this.response, this);
-      this.doTimeout = __bind(this.doTimeout, this);
+    function TimeoutService(_$window, _$timeout, _config, _logFactory, _location) {
+      this._$window = _$window;
+      this._$timeout = _$timeout;
+      this._config = _config;
+      this._location = _location;
+      this._doTimeout = __bind(this._doTimeout, this);
       this.removeTimeoutHandler = __bind(this.removeTimeoutHandler, this);
       this.addTimeoutHandler = __bind(this.addTimeoutHandler, this);
       this.startNewTimeout = __bind(this.startNewTimeout, this);
-      this.log = logFactory.getLogger('timeoutService');
-      this.timeoutSeconds = 60 * 55;
+      this._log = _logFactory.getLogger('timeoutService');
+      this._timeoutSeconds = this._config.timeoutSeconds || (60 * 55);
+      this._timeoutHandlers = [];
       this.startNewTimeout();
-      this.timeouts = [];
+      return;
     }
 
     TimeoutService.prototype.startNewTimeout = function() {
-      return this.t = this.$timeout(this.doTimeout, this.timeoutSeconds * 1000);
+      this._$timeout(this._doTimeout, this._timeoutSeconds * 1000);
     };
 
     TimeoutService.prototype.addTimeoutHandler = function(t) {
-      return this.timeouts.push(t);
+      this._timeoutHandlers.push(t);
     };
 
     TimeoutService.prototype.removeTimeoutHandler = function(t) {
-      return _.remove(this.timeouts, t);
+      _.remove(this._timeoutHandlers, t);
     };
 
-    TimeoutService.prototype.doTimeout = function() {
+    TimeoutService.prototype._doTimeout = function() {
       var _this = this;
-      return _.each(this.timeouts, function(t) {
+      _.each(this._timeoutHandlers, function(t) {
         return t.doTimeout();
       });
-    };
-
-    TimeoutService.prototype.response = function(response) {
-      this.$timeout.cancel(this.t);
-      this.startNewTimeout();
-      return response;
     };
 
     return TimeoutService;
