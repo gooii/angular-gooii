@@ -41,6 +41,6 @@ module.exports = function (grunt) {
     grunt.registerTask("release", "Release a new version - bumps bower.json, git tags, commits and pushes it", function (target) {
         if (!target)
             target = "patch";
-        grunt.task.run(["bump-only:" + target, "bump-commit"]);
+        grunt.task.run(["build_lib", "bump-only:" + target, "bump-commit"]);
     });
 };

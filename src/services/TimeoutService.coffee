@@ -1,30 +1,53 @@
 class TimeoutService
-  @$inject: ['$window', '$timeout','configuration', 'LoggerService', '$location']
+    @$inject: ['$window', '$timeout', 'configuration', 'LoggerService', '$location']
+    constructor: (@_$window, @_$timeout, @_config, _logFactory, @_location) ->
+        @_log               = _logFactory.getLogger('timeoutService')
+        @_timeoutSeconds    = @_config.timeoutSeconds or (60 * 55)
+        @_timeoutHandlers   = []
+        # trigger processing of any timeoutHandlers in n seconds time
+        #
+        @startNewTimeout()
 
-  constructor: (@$window, @$timeout, @config, logFactory, @location) ->
-    @log = logFactory.getLogger('timeoutService')
-    @timeoutSeconds = 60 * 55
-    @startNewTimeout()
-    @timeouts = []
+        # done
+        #
+        return
 
-  startNewTimeout: =>
-    @t = @$timeout @doTimeout, @timeoutSeconds * 1000
+    startNewTimeout: =>
+        # start our internal timeout process which on expiration will invoked
+        # 'doTimeout' on any registered handlers
+        #
+        @_$timeout(@_doTimeout, @_timeoutSeconds * 1000)
 
-  addTimeoutHandler: (t) =>
-    @timeouts.push(t)
+        # done
+        #
+        return
 
-  removeTimeoutHandler: (t) =>
-    _.remove @timeouts, t
+    # adds a timeout handler to our internal list of handlers
+    #
+    addTimeoutHandler: (t) =>
+        @_timeoutHandlers.push(t)
+        # done
+        #
+        return
 
-  doTimeout: =>
-    _.each @timeouts, (t) =>
-      t.doTimeout()
+    # removes a timeout handler
+    #
+    removeTimeoutHandler: (t) =>
+        # remove the handler
+        #
+        _.remove @_timeoutHandlers, t
+        # done
+        #
+        return
 
-  # http interceptor
-  response: (response) =>
-    @$timeout.cancel(@t)
-    @startNewTimeout()
-    return response
+    # performs the internal timeout processing by invoking 'doTimeout' on each
+    # registered handler
+    #
+    _doTimeout: =>
+        _.each @_timeoutHandlers, (t) => t.doTimeout()
+        # done
+        #
+        return
 
 app = angular.module 'gooii'
 
