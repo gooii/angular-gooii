@@ -1,8 +1,8 @@
 class TimeoutService
-    @$inject: ['$window', '$timeout', 'configuration', 'LoggerService', '$location']
-    constructor: (@_$window, @_$timeout, @_config, _logFactory, @_location) ->
+    @$inject: ['$window', '$timeout', 'gooii.ng.CONFIG', 'gooii.ng.loggerService', '$location']
+    constructor: (@_$window, @_$timeout, @_CONFIG, _logFactory, @_location) ->
         @_log               = _logFactory.getLogger('timeoutService')
-        @_timeoutSeconds    = @_config.timeoutSeconds or (60 * 55)
+        @_timeoutSeconds    = @_CONFIG.timeoutSeconds or (60 * 55)
         @_timeoutHandlers   = []
         # trigger processing of any timeoutHandlers in n seconds time
         #
@@ -49,6 +49,6 @@ class TimeoutService
         #
         return
 
-app = angular.module 'gooii'
+app = angular.module 'gooii.ng.time'
 
-app.service 'TimeoutService', TimeoutService
+app.service 'gooii.ng.timeoutService', TimeoutService

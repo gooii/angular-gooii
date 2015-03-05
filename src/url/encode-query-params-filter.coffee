@@ -1,12 +1,11 @@
-app = angular.module 'gooii'
+app = angular.module 'gooii.ng.url'
 
 # generic filter which takes a javascript object and encodes each key/value
 # pair into a URL encoded string in the standard format:-
 #
 #   key=value&key=value
 #
-app.filter 'encodeQueryParams', ->
-
+app.filter 'gooiiEncodeQueryParams', ->
   return (query) ->
     encoded   = ""
     separator = "="

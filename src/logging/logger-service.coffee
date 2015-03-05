@@ -3,9 +3,8 @@
 class LoggerService
   # configure dependency injection
   #
-  @$inject: ['$window', 'configuration']
-
-  constructor: (@$window, @config) ->
+  @$inject: ['$window', 'gooii.ng.CONFIG']
+  constructor: (@$window, @CONFIG) ->
     # logger configuration
     #
     logPattern    = "[%logger] %m%n"
@@ -21,7 +20,7 @@ class LoggerService
       }]
       loggers: [{
         root: true
-        level: @config.logLevel
+        level: @CONFIG.logLevel
         appenders: [
           "theconsole"
         ]
@@ -44,6 +43,6 @@ class LoggerService
   getLogger: (loggerName) =>
     return @$window.woodman.getLogger(loggerName)
 
-app = angular.module 'gooii'
+app = angular.module 'gooii.ng.logging'
 
-app.service 'LoggerService', LoggerService
+app.service 'gooii.ng.loggerService', LoggerService

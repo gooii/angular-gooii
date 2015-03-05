@@ -42,7 +42,7 @@ class CookieStoreService
       @$cookieStore.put(@cookieId, cookie)
 
     @cookie = cookie
-    
+
     return @cookie
 
   get:(key, defaultValue) =>
@@ -62,4 +62,4 @@ class CookieStoreService
   save: () =>
     @$cookieStore.put(@cookieId, @cookie)
 
-angular.module('gooii').service 'CookieStoreFactoryService', ['$cookieStore', 'LoggerService', CookieStoreFactoryService]
+angular.module('gooii.ng.persistence').service 'gooii.ng.cookieStoreService', ['$cookieStore', 'gooii.ng.loggerService', CookieStoreFactoryService]

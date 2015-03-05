@@ -1,6 +1,6 @@
-app = angular.module 'gooii'
+app = angular.module 'gooii.ng.objects'
 
-app.filter 'orderObjectsBy', ->
+app.filter 'gooiiSort', ->
 
   return (items, field, reverse) ->
 

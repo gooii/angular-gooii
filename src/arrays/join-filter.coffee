@@ -1,6 +1,6 @@
-app = angular.module 'gooii'
+app = angular.module 'gooii.ng.arrays'
 
-app.filter 'commaJoinedList', ->
+app.filter 'gooiiJoin', ->
 
   return (input) ->
 

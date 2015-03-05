@@ -1,1 +1,16 @@
-lib = angular.module('gooii',[]);
+angular.module('gooii.ng.arrays'        , []);
+angular.module('gooii.ng.objects'       , []);
+angular.module('gooii.ng.strings'       , []);
+angular.module('gooii.ng.url'           , []);
+angular.module('gooii.ng.persistence'   , []);
+angular.module('gooii.ng.logging'       , []);
+angular.module('gooii.ng.time'          , []);
+angular.module('gooii.ng', [
+    'gooii.ng.arrays',
+    'gooii.ng.objects',
+    'gooii.ng.strings',
+    'gooii.ng.url',
+    'gooii.ng.persistence',
+    'gooii.ng.logging',
+    'gooii.ng.time'
+]);
