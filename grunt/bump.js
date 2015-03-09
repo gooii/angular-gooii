@@ -4,7 +4,7 @@ module.exports = {
         updateConfigs     : [],
         commit            : true,
         commitMessage     : 'Release v%VERSION%',
-        commitFiles       : ['bower.json'],
+        commitFiles       : ['-a'],
         createTag         : true,
         tagName           : '%VERSION%',
         tagMessage        : 'Version %VERSION%',
