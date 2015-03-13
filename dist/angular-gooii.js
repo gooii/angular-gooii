@@ -271,7 +271,7 @@ Portions adapted from log4javascript
 
   app = angular.module('gooii.ng.strings');
 
-  app.filter('gooiiCapitalise', function() {
+  app.filter('gooii.ng.strings.capitalise', function() {
     return function(input) {
       if (!angular.isDefined(input)) {
         return '';

@@ -1,6 +1,6 @@
 app = angular.module 'gooii.ng.strings'
 
-app.filter 'gooiiCapitalise', ->
+app.filter 'gooii.ng.strings.capitalise', ->
     return (input) ->
         unless angular.isDefined input
             return ''
