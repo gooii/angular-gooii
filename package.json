@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "dependencies": {},
   "devDependencies": {
+    "coffee-loader": "^0.7.2",
     "coffee-script": "~1.7.1",
     "grunt": "~0.4.1",
     "grunt-bower-install": "~0.7.0",
@@ -22,7 +23,9 @@
     "load-grunt-config": "^0.7.1",
     "load-grunt-tasks": "^0.4.0",
     "lodash": "^2.4.1",
-    "time-grunt": "~0.2.1"
+    "time-grunt": "~0.2.1",
+    "webpack": "^1.12.2",
+    "woodman": "^1.1.0"
   },
   "engines": {
     "node": ">=0.8.0"

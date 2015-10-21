@@ -49,6 +49,5 @@ class TimeoutService
         #
         return
 
-app = angular.module 'gooii.ng.time'
-
-app.service 'gooii.ng.timeoutService', TimeoutService
+module.exports = (ngModule) ->
+    ngModule.service 'gooii.ng.timeoutService', TimeoutService

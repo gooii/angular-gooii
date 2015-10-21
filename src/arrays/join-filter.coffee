@@ -1,12 +1,11 @@
-app = angular.module 'gooii.ng.arrays'
+module.exports = (ngModule) ->
+    ngModule.filter 'gooiiJoin', ->
 
-app.filter 'gooiiJoin', ->
+      return (input) ->
 
-  return (input) ->
-
-    if _.isArray(input)
-      if input.length > 0
-        return input.join(', ')
-      else return ''
-    else
-      return input
+        if _.isArray(input)
+          if input.length > 0
+            return input.join(', ')
+          else return ''
+        else
+          return input

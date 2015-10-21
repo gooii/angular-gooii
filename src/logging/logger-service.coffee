@@ -1,3 +1,5 @@
+require('woodman')
+
 # simple wrapper around our woodman logger
 #
 class LoggerService
@@ -43,6 +45,5 @@ class LoggerService
   getLogger: (loggerName) =>
     return @$window.woodman.getLogger(loggerName)
 
-app = angular.module 'gooii.ng.logging'
-
-app.service 'gooii.ng.loggerService', LoggerService
+module.exports = (ngModule) ->
+    ngModule.service 'gooii.ng.loggerService', LoggerService

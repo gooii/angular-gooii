@@ -1,26 +1,25 @@
-app = angular.module 'gooii.ng.objects'
+module.exports = (ngModule) ->
+    ngModule.filter 'gooiiSort', ->
 
-app.filter 'gooiiSort', ->
+      return (items, field, reverse) ->
 
-  return (items, field, reverse) ->
+        filtered = []
 
-    filtered = []
+        angular.forEach(items, (item , key) ->
+          item["key"] = key
+          filtered.push(item)
+        )
 
-    angular.forEach(items, (item , key) ->
-      item["key"] = key
-      filtered.push(item)
-    )
+        filtered.sort( (a, b) ->
+          if(a[field] > b[field])
+            return 1
+          if(a[field] < b[field])
+            return -1
 
-    filtered.sort( (a, b) ->
-      if(a[field] > b[field])
-        return 1
-      if(a[field] < b[field])
-        return -1
+          return 0;
+        )
 
-      return 0;
-    )
+        if reverse
+          filtered.reverse()
 
-    if reverse
-      filtered.reverse()
-
-    return filtered
+        return filtered

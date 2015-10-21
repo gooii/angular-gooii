@@ -62,4 +62,5 @@ class CookieStoreService
   save: () =>
     @$cookieStore.put(@cookieId, @cookie)
 
-angular.module('gooii.ng.persistence').service 'gooii.ng.cookieStoreService', ['$cookieStore', 'gooii.ng.loggerService', CookieStoreFactoryService]
+module.exports = (ngModule) ->
+    ngModule.service 'gooii.ng.cookieStoreService', ['$cookieStore', 'gooii.ng.loggerService', CookieStoreFactoryService]
