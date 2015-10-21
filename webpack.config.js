@@ -1,4 +1,4 @@
-webpack = require('webpack')
+webpack = require('webpack');
 
 module.exports = {
     context: __dirname + "/src",

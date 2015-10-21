@@ -18,29 +18,9 @@ module.exports = function (grunt) {
         loadGruntTasks: false
     });
 
-    grunt.registerTask('test', [
-        'clean:test',
-        'coffee',
-        'karma'
-    ]);
-
-    grunt.registerTask('build', [
-        'clean:dist',
-        'coffee',
-        'concat',
-        'ngAnnotate'
-    ]);
-
-    grunt.registerTask('build_lib',['build']);
-
-    grunt.registerTask('default', [
-        'test',
-        'build'
-    ]);
-
     grunt.registerTask("release", "Release a new version - bumps bower.json, git tags, commits and pushes it", function (target) {
         if (!target)
             target = "patch";
-        grunt.task.run(["build_lib", "bump-only:" + target, "bump-commit"]);
+        grunt.task.run(["bump-only:" + target, "bump-commit"]);
     });
 };
