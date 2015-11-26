@@ -20,8 +20,6 @@ class CookieStoreFactoryService
 
 class CookieStoreService
 
-  @cookieId: ''
-
   constructor: (@$cookieStore, logFactory, @cookieId) ->
     @log = logFactory.getLogger('service.CookieStore.' + @cookieId)
     @log.log('Created cookie store with ID : %s', @cookieId)
