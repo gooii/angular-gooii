@@ -1,5 +1,5 @@
 module.exports = (ngModule) ->
-    ngModule.filter 'gooii.ng.strings.capitalise', ->
+    ngModule.filter 'gooiiCapitalise', ->
         return (input) ->
             unless angular.isDefined input
                 return ''

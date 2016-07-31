@@ -16,11 +16,3 @@ angular.module('gooii.ng', [
     'gooii.ng.time'
 ]);
 
-require('./arrays/first-filter.coffee')(ngArrays)
-require('./arrays/join-filter.coffee')(ngArrays)
-require('./logging/logger-service.coffee')(ngLogging)
-require('./objects/sort-by-filter.coffee')(ngObjects)
-require('./persistence/cookie-store-service.coffee')(ngPersistence)
-require('./strings/capitalise-filter.coffee')(ngStrings)
-require('./time/timeout-service.coffee')(ngTime)
-require('./url/encode-query-params-filter.coffee')(ngUrl)
